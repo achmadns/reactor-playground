@@ -173,5 +173,6 @@ public class EventBusExperiment {
     @Test(dataProvider = "regex-input")
     public void regex(String pattern, String input, boolean matches) {
         assertThat(matches).isEqualTo(compile(pattern).matcher(input).matches());
+        Promises.prepare();
     }
 }

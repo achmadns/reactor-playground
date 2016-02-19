@@ -11,6 +11,6 @@
         <appender-ref ref="STDOUT"/>
     </root>
 
-    <logger name="in.achmad" level="DEBUG"/>
+    <logger name="com.github.achmadns" level="DEBUG"/>
 
 </configuration>
