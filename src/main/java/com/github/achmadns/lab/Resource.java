@@ -1,7 +1,7 @@
 package com.github.achmadns.lab;
 
 /**
- * Created by achmad on 19/02/16.
+ * Represent any external resource needed by {@link Action}
  */
 public class Resource {
     private volatile boolean busy;

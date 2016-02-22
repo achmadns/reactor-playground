@@ -1,7 +1,7 @@
 package com.github.achmadns.lab;
 
 /**
- * Created by achmad on 19/02/16.
+ * Exception thrown when a resource is busy/ unavailable.
  */
 public class BusyException extends RuntimeException {
     public BusyException() {

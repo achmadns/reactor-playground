@@ -1,6 +1,8 @@
 # Reactor Playground
 
 Well, let's play with http://projectreactor.io/.
+Run [ActionTest](src/test/java/com/github/achmadns/lab/ActionTest.java) for demo.
+
 
 It is one of many reactive pattern implementation that catch my attention because the people behind it.
 Thank you so much Pivotal team. Before you proceed, it is good idea to grasp the idea of being *reactive*
@@ -45,3 +47,4 @@ Non-blocking communication allows recipients to only consume resources while act
 
 We'll try to react on something when an error occurred. Suspend the activity until the external resource become available again.
 Try to find out which point(s) is applied in our use case.
+
