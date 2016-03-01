@@ -12,5 +12,6 @@
     </root>
 
     <logger name="com.github.achmadns" level="DEBUG"/>
+    <logger name="org.apache.camel" level="DEBUG"/>
 
 </configuration>

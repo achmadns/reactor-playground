@@ -34,7 +34,7 @@ public class ActionTest {
      * @throws InterruptedException
      */
     @Test(timeOut = 15000)
-    public void test_drive() throws InterruptedException {
+    public void try_out() throws InterruptedException {
         log.info("Start the test.");
         final Resource resource = new Resource();
         final EventBus bus = EventBus.create(Environment.get(), new ThreadPoolExecutorDispatcher(
@@ -108,5 +108,4 @@ public class ActionTest {
 
         log.info("Done.");
     }
-
 }

@@ -16,29 +16,40 @@ import static reactor.bus.Event.wrap;
 public class Action {
     private final Pausable scheduler;
     private final Logger log = LoggerFactory.getLogger(getClass());
+    private final EventBus bus;
+    private Resource resource;
 
     public Action(Resource resource, EventBus bus) {
-        scheduler = initScheduler(resource, bus);
+        this.resource = resource;
+        this.bus = bus;
+        scheduler = initScheduler(this.resource, bus);
     }
 
     private Pausable initScheduler(Resource resource, EventBus bus) {
-        final Pausable scheduler = Environment.get().getTimer().schedule(aLong -> {
-            try {
-                final String response = resource.get();
-                bus.notify("response", wrap(response));
-            } catch (Exception e) {
-                bus.notify(e, wrap(e));
-                log.error("Failed to get resource!");
-            }
-        }, 1, TimeUnit.SECONDS, 1000);
+        final Pausable scheduler = Environment.get().getTimer().schedule(aLong -> get(), 1, TimeUnit.SECONDS, 1000);
+        scheduler.pause();
         return scheduler;
+    }
+
+    public String get() {
+        try {
+            final String response = resource.get();
+            bus.notify("response", wrap(response));
+            return response;
+        } catch (Exception e) {
+            bus.notify(e, wrap(e));
+            log.error("Failed to get resource!");
+        }
+        return null;
     }
 
     public void suspend() {
         scheduler.pause();
+        log.info("Action was suspended.");
     }
 
     public void resume() {
         scheduler.resume();
+        log.info("Action was resumed.");
     }
 }
