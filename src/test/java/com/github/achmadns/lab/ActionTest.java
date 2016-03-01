@@ -31,6 +31,7 @@ public class ActionTest {
 
     /**
      * I prefer using test instead of main class :)
+     *
      * @throws InterruptedException
      */
     @Test(timeOut = 15000)
@@ -51,7 +52,7 @@ public class ActionTest {
             log.info("Resource checked.");
         }, 1, TimeUnit.SECONDS, 1000);
 
-
+        action.resume();
         // resume the action when resource is available
         bus.on($("resource"), event -> {
             action.resume();

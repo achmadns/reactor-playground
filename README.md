@@ -1,7 +1,8 @@
 # Reactor Playground
 
 Well, let's play with http://projectreactor.io/.
-Run [ActionTest](src/test/java/com/github/achmadns/lab/ActionTest.java) for demo.
+Run [ActionTest](src/test/java/com/github/achmadns/lab/ActionTest.java) for simple demo
+or [AppTest](src/test/java/com/github/achmadns/lab/AppTest.java) for spring boot plus camel integration demo.
 
 
 It is one of many reactive pattern implementation that catch my attention because the people behind it.
