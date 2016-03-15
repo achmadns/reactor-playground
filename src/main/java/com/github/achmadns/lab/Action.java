@@ -17,15 +17,15 @@ public class Action {
     private final Pausable scheduler;
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final EventBus bus;
-    private Resource resource;
+    private final Resource resource;
 
     public Action(Resource resource, EventBus bus) {
         this.resource = resource;
         this.bus = bus;
-        scheduler = initScheduler(this.resource, bus);
+        scheduler = initScheduler();
     }
 
-    private Pausable initScheduler(Resource resource, EventBus bus) {
+    private Pausable initScheduler() {
         final Pausable scheduler = Environment.get().getTimer().schedule(aLong -> get(), 1, TimeUnit.SECONDS, 1000);
         scheduler.pause();
         return scheduler;

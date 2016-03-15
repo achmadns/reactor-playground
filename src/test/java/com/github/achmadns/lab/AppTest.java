@@ -50,6 +50,7 @@ public class AppTest {
             log.info("Resource checked.");
         }, 1, TimeUnit.SECONDS, 1000);
 
+        pool.on($("aspect.get"), event -> log.info("Got from aspect.get {}", event.getData()));
 
         // resume the camel when resource is available
         // consumer is resumed, not the endpoint

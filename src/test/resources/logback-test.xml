@@ -11,7 +11,11 @@
         <appender-ref ref="STDOUT"/>
     </root>
 
-    <logger name="com.github.achmadns" level="DEBUG"/>
-    <logger name="org.apache.camel" level="DEBUG"/>
+    <logger name="com.github.achmadns" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    <logger name="org.apache.camel" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
 
 </configuration>

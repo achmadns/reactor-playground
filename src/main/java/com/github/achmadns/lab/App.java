@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import reactor.Environment;
 import reactor.bus.Event;
 import reactor.bus.EventBus;
@@ -19,7 +21,9 @@ import reactor.core.dispatch.ThreadPoolExecutorDispatcher;
 import static java.lang.Runtime.getRuntime;
 import static reactor.Environment.get;
 
+@ComponentScan
 @EnableAutoConfiguration
+@EnableAspectJAutoProxy
 public class App {
 
     static {
@@ -61,9 +65,10 @@ public class App {
                 });
             }
 
+            // a simple custom endpoint without creating full fledged component
             private DefaultPollingEndpoint endpoint() {
                 return new DefaultPollingEndpoint() {
-                    final DefaultProducer producer = new DefaultProducer(self()) {
+                    final DefaultProducer producer = new DefaultProducer(this) {
                         @Override
                         public void process(Exchange exchange) throws Exception {
                             log.info("Got exchange: {}", exchange);
@@ -82,7 +87,7 @@ public class App {
 
                     @Override
                     public Consumer createConsumer(Processor processor) throws Exception {
-                        return new ScheduledPollConsumer(self(), processor) {
+                        return new ScheduledPollConsumer(this, processor) {
                             @Override
                             protected int poll() throws Exception {
                                 final String response = action.get();
@@ -115,10 +120,6 @@ public class App {
                     @Override
                     public boolean isSingleton() {
                         return true;
-                    }
-
-                    private Endpoint self() {
-                        return this;
                     }
 
                     @Override
