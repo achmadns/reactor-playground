@@ -1,0 +1,7 @@
+@NAME(check)
+  SELECT 1 FROM DUAL;
+
+@NAME(getFirstUser)
+  SELECT name, age
+  FROM USER
+  @FETCH(1)
